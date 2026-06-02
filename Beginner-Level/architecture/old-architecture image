@@ -1,0 +1,19 @@
+Users
+ ↓
+AWS Load Balancer
+ ↓
+NGINX Ingress
+ ↓
+Frontend Service
+ ↓
+Frontend Pods
+ ↓
+Backend Service
+ ↓
+Backend Pods
+ ↓
+MySQL StatefulSet
+ ↓
+PVC
+ ↓
+EBS Volume

@@ -1,0 +1,13 @@
+Browser
+ ↓
+Load Balancer
+ ↓
+Ingress
+ ↓
+Frontend
+ ↓
+Backend API
+ ↓
+Database
+ ↓
+Response Back

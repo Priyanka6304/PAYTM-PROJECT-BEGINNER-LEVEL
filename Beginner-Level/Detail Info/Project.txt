@@ -1,0 +1,2013 @@
+Prompt:-1
+
+I want to build a complete Real-Time Full Stack Kubernetes Project on AWS using KOPS.
+
+My application is a Paytm-like application with:
+
+1. ReactJS Frontend Service
+2. NodeJS Backend Service
+3. MySQL StatefulSet Database
+
+I want the entire project setup step by step from scratch using:
+
+* AWS EC2
+* MobaXterm
+* Kubernetes
+* KOPS
+* Docker
+* Ingress Controller
+* Load Balancer
+* Persistent Volumes
+* ConfigMap
+* Secrets
+* Deployments
+* Services
+* StatefulSets
+
+I will provide my previous Kubernetes project as reference only.
+Do NOT copy the previous project directly.
+Create a completely new advanced Paytm-based architecture using the reference flow.
+
+Requirements:
+
+* Beginner friendly explanation
+* Every command explained
+* Every YAML explained
+* Real-time production style setup
+* Step by step from zero to deployment
+* Complete folder structure
+* Full deployment flow
+* Troubleshooting section
+* Architecture explanation
+* Kubernetes flow explanation
+* Docker build and push process
+* AWS KOPS cluster setup
+* Ingress setup
+* Persistent storage explanation
+* Real ReactJS frontend
+* Real NodeJS backend
+* Real MySQL setup
+* Proper naming conventions
+* Security best practices using Secrets
+* Scaling explanation
+* Zero downtime deployment explanation
+
+Also create:
+
+1. Complete architecture diagram
+2. Tree structure of project
+3. Flow diagram
+4. Real-world explanation
+5. Commands section
+6. Future improvements section
+7. Beginner notes
+8. Interview questions related to project
+
+The final documentation should look like a real company deployment guide written by me manually for future reference.
+
+Also provide:
+
+* Complete Kubernetes YAML files
+* Dockerfiles
+* ReactJS code
+* Backend NodeJS code
+* MySQL setup
+* Database table creation
+* Sample data insertion
+* Verification commands
+* Debugging commands
+
+The explanation should be so detailed that even a fresher can deploy the project independently by following the document step by step.
+
+I will also provide screenshots/images from my previous project.
+Use them only as reference and create a new architecture image for the Paytm application deployment on AWS KOPS Kubernetes cluster.
+
+PAYTM FULL STACK KUBERNETES PROJECT ON AWS KOPS
+
+## COMPLETE STEP BY STEP REAL TIME DOCUMENTATION
+
+Author: Self Hands-on Project Documentation
+Platform: AWS + Kubernetes + KOPS + Docker + ReactJS + NodeJS + MySQL
+Tool Used: MobaXterm
+Cloud: AWS EC2
+Kubernetes Type: Full Stack Kubernetes Cluster using KOPS
+
+---
+
+# PROJECT OVERVIEW
+
+This project is a complete Full Stack Kubernetes deployment project using:
+
+* ReactJS Frontend
+* NodeJS Backend
+* MySQL Database StatefulSet
+* Kubernetes Services
+* Ingress Controller
+* AWS Load Balancer
+* Persistent Volume
+* KOPS Kubernetes Cluster
+* AWS EC2
+* DockerHub
+
+The project is designed as a Paytm-like Application.
+
+This documentation is written completely in beginner-friendly format so that even a fresher can setup the entire project from scratch.
+
+---
+
+# FINAL PROJECT ARCHITECTURE
+
+```text
+
+
+
+&#x20;               USERS
+
+&#x20;                 |
+
+&#x20;                 |
+
+&#x20;          AWS LOAD BALANCER
+
+&#x20;                 |
+
+&#x20;                 |
+
+&#x20;         NGINX INGRESS CONTROLLER
+
+&#x20;            /               \\
+
+&#x20;           /                 \\
+
+&#x20;          /                   \\
+
+&#x20;  FRONTEND SERVICE        BACKEND SERVICE
+
+&#x20;         |                      |
+
+&#x20;         |                      |
+
+&#x20;   REACT FRONTEND         NODEJS BACKEND
+
+&#x20;         |                      |
+
+&#x20;         |                      |
+
+&#x20;         ------------------------
+
+&#x20;                    |
+
+&#x20;                    |
+
+&#x20;            MYSQL STATEFULSET
+
+&#x20;                    |
+
+&#x20;                    |
+
+&#x20;             PERSISTENT VOLUME
+
+&#x20;                    |
+
+&#x20;                    |
+
+&#x20;                 AWS EBS
+
+
+
+```
+
+---
+
+# TECHNOLOGIES USED
+
+| Component          | Technology       |
+| ------------------ | ---------------- |
+| Cloud              | AWS              |
+| Kubernetes Setup   | KOPS             |
+| Frontend           | ReactJS          |
+| Backend            | NodeJS + Express |
+| Database           | MySQL            |
+| Containerization   | Docker           |
+| Ingress            | NGINX Ingress    |
+| Persistent Storage | EBS Volume       |
+| Namespace          | production       |
+| Tool               | MobaXterm        |
+
+---
+
+# COMPLETE FLOW OF APPLICATION
+
+1. User opens browser
+2. Request goes to AWS Load Balancer
+3. Load Balancer forwards traffic to Ingress Controller
+4. Ingress routes request
+5. Frontend request goes to ReactJS Service
+6. API request goes to Backend Service
+7. Backend connects to MySQL
+8. MySQL stores payment/user data
+9. Response returns back
+10. Frontend displays data
+
+---
+
+# IMPORTANT REAL TIME PROJECT STRUCTURE
+
+```text
+
+paytm-project/
+
+│
+
+├── frontend/
+
+│   ├── src/
+
+│   ├── public/
+
+│   ├── package.json
+
+│   ├── Dockerfile
+
+│   └── nginx.conf
+
+│
+
+├── backend/
+
+│   ├── server.js
+
+│   ├── package.json
+
+│   ├── Dockerfile
+
+│   └── routes/
+
+│
+
+├── kubernetes/
+
+│   ├── namespace.yml
+
+│   ├── configmap.yml
+
+│   ├── secret.yml
+
+│   ├── mysql-statefulset.yml
+
+│   ├── backend-deployment.yml
+
+│   ├── backend-service.yml
+
+│   ├── frontend-deployment.yml
+
+│   ├── frontend-service.yml
+
+│   └── ingress.yml
+
+│
+
+└── README.md
+
+
+
+```
+
+---
+
+# STEP 1 — CREATE EC2 INSTANCE
+
+Login to AWS Console.
+
+Launch EC2 Instance.
+
+## EC2 Configuration
+
+| Option         | Value                                |
+| -------------- | ------------------------------------ |
+| AMI            | Amazon Linux 2023                    |
+| Instance Type  | t3.micro                             |
+| Name           | kops                                 |
+| Storage        | 20 GB                                |
+| Security Group | Allow All Traffic (Learning Purpose) |
+| IAM Role       | AdministratorAccess                  |
+
+---
+
+# STEP 2 — CONNECT EC2 USING MOBAXTERM
+
+Open MobaXterm.
+
+Click:
+
+Session → SSH
+
+Enter:
+
+```bash
+
+Public IP of EC2
+
+```
+
+Username:
+
+```bash
+
+ec2-user
+
+```
+
+Connect using pem key.
+
+---
+
+# STEP 3 — SWITCH TO ROOT USER
+
+```bash
+
+sudo su -
+
+```
+
+---
+
+# STEP 4 — UPDATE SERVER
+
+```bash
+
+yum update -y
+
+```
+
+---
+
+# STEP 5 — CONFIGURE PATH
+
+```bash
+
+vi .bashrc
+
+```
+
+Add:
+
+```bash
+
+export PATH=$PATH:/usr/local/bin/
+
+```
+
+Save and run:
+
+```bash
+
+source .bashrc
+
+```
+
+---
+
+# STEP 6 — GENERATE SSH KEY
+
+```bash
+
+ssh-keygen
+
+```
+
+Press Enter for all.
+
+Copy public key:
+
+```bash
+
+cp /root/.ssh/id\_rsa.pub my-keypair.pub
+
+```
+
+Give permission:
+
+```bash
+
+chmod 777 my-keypair.pub
+
+```
+
+---
+
+# STEP 7 — CREATE KOPS INSTALLATION SCRIPT
+
+```bash
+
+vi kops.sh
+
+```
+
+Paste:
+
+```bash
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+
+
+wget https://github.com/kubernetes/kops/releases/download/v1.32.0/kops-linux-amd64
+
+
+
+chmod +x kops-linux-amd64 kubectl
+
+
+
+mv kubectl /usr/local/bin/kubectl
+
+
+
+mv kops-linux-amd64 /usr/local/bin/kops
+
+
+
+aws s3api create-bucket --bucket paytm-kops-state-store6304.k8s.local --region ap-south-1 --create-bucket-configuration LocationConstraint=ap-south-1
+
+
+
+aws s3api put-bucket-versioning --bucket paytm-kops-state-store6304.k8s.local --region ap-south-1 --versioning-configuration Status=Enabled
+
+
+
+export KOPS\_STATE\_STORE=s3://paytm-kops-state-store6304.k8s.local
+
+
+
+kops create cluster \\
+
+\--name=paytm.k8s.local \\
+
+\--zones=ap-south-1a,ap-south-1b \\
+
+\--control-plane-count=1 \\
+
+\--control-plane-size=c7i-flex.large \\
+
+\--node-count=2 \\
+
+\--node-size=t3.small \\
+
+\--node-volume-size=40 \\
+
+\--control-plane-volume-size=40 \\
+
+\--ssh-public-key=my-keypair.pub \\
+
+\--image=ami-02d26659fd82cf299 \\
+
+\--networking=calico
+
+
+
+kops update cluster --name paytm.k8s.local --yes --admin
+
+```
+
+Save file.
+
+---
+
+# STEP 8 — EXECUTE KOPS SCRIPT
+
+```bash
+
+sh kops.sh
+
+```
+
+---
+
+# STEP 9 — EXPORT KOPS STATE STORE
+
+```bash
+
+export KOPS\_STATE\_STORE=s3://paytm-kops-state-store6304.k8s.local
+
+```
+
+---
+
+# STEP 10 — VALIDATE CLUSTER
+
+```bash
+
+kops validate cluster --wait 10m
+
+```
+
+---
+
+# STEP 11 — VERIFY NODES
+
+```bash
+
+kops get cluster
+
+```
+
+```bash
+
+kubectl get nodes
+
+```
+
+```bash
+
+kubectl get nodes -o wide
+
+```
+
+Expected:
+
+* 1 Master Node
+* 2 Worker Nodes
+
+---
+
+# STEP 12 — CREATE NAMESPACE
+
+```bash
+
+vi namespace.yml
+
+```
+
+```yaml
+
+apiVersion: v1
+
+kind: Namespace
+
+
+
+metadata:
+
+&#x20; name: production
+
+```
+
+Apply:
+
+```bash
+
+kubectl apply -f namespace.yml
+
+```
+
+---
+
+# STEP 13 — CREATE CONFIGMAP
+
+```bash
+
+vi configmap.yml
+
+```
+
+```yaml
+
+apiVersion: v1
+
+kind: ConfigMap
+
+
+
+metadata:
+
+&#x20; name: app-config
+
+&#x20; namespace: production
+
+
+
+data:
+
+&#x20; DB\_HOST: mysql-headless
+
+&#x20; DB\_NAME: paytm
+
+&#x20; APP\_ENV: production
+
+```
+
+Apply:
+
+```bash
+
+kubectl apply -f configmap.yml
+
+```
+
+---
+
+# STEP 14 — CREATE SECRET
+
+```bash
+
+vi secret.yml
+
+```
+
+Encode password:
+
+```bash
+
+echo -n 'paytm123' | base64
+
+```
+
+Example Output:
+
+```bash
+
+cGF5dG0xMjM=
+
+```
+
+Now create secret:
+
+```yaml
+
+apiVersion: v1
+
+kind: Secret
+
+
+
+metadata:
+
+&#x20; name: mysql-secret
+
+&#x20; namespace: production
+
+
+
+type: Opaque
+
+
+
+data:
+
+&#x20; MYSQL\_ROOT\_PASSWORD: cGF5dG0xMjM=
+
+```
+
+Apply:
+
+```bash
+
+kubectl apply -f secret.yml
+
+```
+
+---
+
+# STEP 15 — CREATE MYSQL STATEFULSET
+
+```bash
+
+vi mysql-statefulset.yml
+
+```
+
+```yaml
+
+apiVersion: apps/v1
+
+kind: StatefulSet
+
+
+
+metadata:
+
+&#x20; name: mysql
+
+&#x20; namespace: production
+
+
+
+spec:
+
+&#x20; serviceName: mysql-headless
+
+&#x20; replicas: 1
+
+
+
+&#x20; selector:
+
+&#x20;   matchLabels:
+
+&#x20;     app: mysql
+
+
+
+&#x20; template:
+
+&#x20;   metadata:
+
+&#x20;     labels:
+
+&#x20;       app: mysql
+
+
+
+&#x20;   spec:
+
+&#x20;     containers:
+
+&#x20;     - name: mysql
+
+
+
+&#x20;       image: mysql:8.0
+
+
+
+&#x20;       ports:
+
+&#x20;       - containerPort: 3306
+
+
+
+&#x20;       env:
+
+&#x20;       - name: MYSQL\_ROOT\_PASSWORD
+
+&#x20;         valueFrom:
+
+&#x20;           secretKeyRef:
+
+&#x20;             name: mysql-secret
+
+&#x20;             key: MYSQL\_ROOT\_PASSWORD
+
+
+
+&#x20;       volumeMounts:
+
+&#x20;       - name: mysql-storage
+
+&#x20;         mountPath: /var/lib/mysql
+
+
+
+&#x20; volumeClaimTemplates:
+
+&#x20; - metadata:
+
+&#x20;     name: mysql-storage
+
+
+
+&#x20;   spec:
+
+&#x20;     accessModes:
+
+&#x20;     - ReadWriteOnce
+
+
+
+&#x20;     resources:
+
+&#x20;       requests:
+
+&#x20;         storage: 5Gi
+
+```
+
+Apply:
+
+```bash
+
+kubectl apply -f mysql-statefulset.yml
+
+```
+
+---
+
+# STEP 16 — CREATE MYSQL HEADLESS SERVICE
+
+```bash
+
+vi mysql-headless.yml
+
+```
+
+```yaml
+
+apiVersion: v1
+
+kind: Service
+
+
+
+metadata:
+
+&#x20; name: mysql-headless
+
+&#x20; namespace: production
+
+
+
+spec:
+
+&#x20; clusterIP: None
+
+
+
+&#x20; selector:
+
+&#x20;   app: mysql
+
+
+
+&#x20; ports:
+
+&#x20; - port: 3306
+
+```
+
+Apply:
+
+```bash
+
+kubectl apply -f mysql-headless.yml
+
+```
+
+---
+
+# STEP 17 — VERIFY MYSQL POD
+
+```bash
+
+kubectl get pods -n production
+
+```
+
+---
+
+# STEP 18 — LOGIN INTO MYSQL POD
+
+```bash
+
+kubectl exec -it mysql-0 -n production -- bash
+
+```
+
+```bash
+
+mysql -u root -p
+
+```
+
+Password:
+
+```bash
+
+paytm123
+
+```
+
+---
+
+# STEP 19 — CREATE PAYTM DATABASE
+
+```sql
+
+CREATE DATABASE paytm;
+
+```
+
+```sql
+
+USE paytm;
+
+```
+
+---
+
+# STEP 20 — CREATE USERS TABLE
+
+```sql
+
+CREATE TABLE users (
+
+&#x20;id INT AUTO\_INCREMENT PRIMARY KEY,
+
+&#x20;name VARCHAR(100),
+
+&#x20;email VARCHAR(100),
+
+&#x20;wallet\_balance INT
+
+);
+
+```
+
+---
+
+# STEP 21 — INSERT SAMPLE DATA
+
+```sql
+
+INSERT INTO users(name,email,wallet\_balance)
+
+VALUES
+
+('Rahul','rahul@gmail.com',5000),
+
+('Sneha','sneha@gmail.com',7000),
+
+('Arjun','arjun@gmail.com',9000);
+
+```
+
+Check data:
+
+```sql
+
+SELECT \* FROM users;
+
+```
+
+---
+
+# STEP 22 — CREATE NODEJS BACKEND
+
+```bash
+
+mkdir backend
+
+cd backend
+
+```
+
+---
+
+# STEP 23 — CREATE PACKAGE.JSON
+
+```bash
+
+vi package.json
+
+```
+
+```json
+
+{
+
+&#x20; "name": "paytm-backend",
+
+&#x20; "version": "1.0.0",
+
+&#x20; "main": "server.js",
+
+&#x20; "dependencies": {
+
+&#x20;   "express": "^4.18.2",
+
+&#x20;   "mysql2": "^3.6.0",
+
+&#x20;   "cors": "^2.8.5"
+
+&#x20; }
+
+}
+
+```
+
+---
+
+# STEP 24 — CREATE SERVER.JS
+
+```bash
+
+vi server.js
+
+```
+
+```javascript
+
+const express = require('express');
+
+const mysql = require('mysql2');
+
+const cors = require('cors');
+
+
+
+const app = express();
+
+
+
+app.use(cors());
+
+app.use(express.json());
+
+
+
+const connection = mysql.createConnection({
+
+&#x20; host: process.env.DB\_HOST,
+
+&#x20; user: 'root',
+
+&#x20; password: process.env.DB\_PASSWORD,
+
+&#x20; database: process.env.DB\_NAME
+
+});
+
+
+
+app.get('/api/users', (req, res) => {
+
+
+
+&#x20; connection.query(
+
+&#x20;   'SELECT \* FROM users',
+
+&#x20;   (err, results) => {
+
+
+
+&#x20;     if (err) {
+
+&#x20;       res.status(500).send(err);
+
+&#x20;     } else {
+
+&#x20;       res.json(results);
+
+&#x20;     }
+
+&#x20;   }
+
+&#x20; );
+
+});
+
+
+
+app.listen(3000, () => {
+
+&#x20; console.log('Paytm Backend Running');
+
+});
+
+```
+
+---
+
+# STEP 25 — CREATE BACKEND DOCKERFILE
+
+```bash
+
+vi Dockerfile
+
+```
+
+```dockerfile
+
+FROM node:18
+
+
+
+WORKDIR /app
+
+
+
+COPY package.json .
+
+
+
+RUN npm install
+
+
+
+COPY server.js .
+
+
+
+EXPOSE 3000
+
+
+
+CMD \["node", "server.js"]
+
+```
+
+---
+
+# STEP 26 — BUILD BACKEND IMAGE
+
+```bash
+
+docker build -t paytm-backend:v1 .
+
+```
+
+---
+
+# STEP 27 — PUSH IMAGE TO DOCKERHUB
+
+```bash
+
+docker tag paytm-backend:v1 yourdockerhub/paytm-backend:v1
+
+```
+
+```bash
+
+docker login
+
+```
+
+```bash
+
+docker push yourdockerhub/paytm-backend:v1
+
+```
+
+---
+
+# STEP 28 — CREATE BACKEND DEPLOYMENT
+
+```bash
+
+vi backend-deployment.yml
+
+```
+
+```yaml
+
+apiVersion: apps/v1
+
+kind: Deployment
+
+
+
+metadata:
+
+&#x20; name: backend
+
+&#x20; namespace: production
+
+
+
+spec:
+
+&#x20; replicas: 2
+
+
+
+&#x20; selector:
+
+&#x20;   matchLabels:
+
+&#x20;     app: backend
+
+
+
+&#x20; template:
+
+&#x20;   metadata:
+
+&#x20;     labels:
+
+&#x20;       app: backend
+
+
+
+&#x20;   spec:
+
+&#x20;     containers:
+
+&#x20;     - name: backend
+
+
+
+&#x20;       image: yourdockerhub/paytm-backend:v1
+
+
+
+&#x20;       ports:
+
+&#x20;       - containerPort: 3000
+
+
+
+&#x20;       env:
+
+&#x20;       - name: DB\_HOST
+
+&#x20;         valueFrom:
+
+&#x20;           configMapKeyRef:
+
+&#x20;             name: app-config
+
+&#x20;             key: DB\_HOST
+
+
+
+&#x20;       - name: DB\_NAME
+
+&#x20;         valueFrom:
+
+&#x20;           configMapKeyRef:
+
+&#x20;             name: app-config
+
+&#x20;             key: DB\_NAME
+
+
+
+&#x20;       - name: DB\_PASSWORD
+
+&#x20;         valueFrom:
+
+&#x20;           secretKeyRef:
+
+&#x20;             name: mysql-secret
+
+&#x20;             key: MYSQL\_ROOT\_PASSWORD
+
+```
+
+Apply:
+
+```bash
+
+kubectl apply -f backend-deployment.yml
+
+```
+
+---
+
+# STEP 29 — CREATE BACKEND SERVICE
+
+```bash
+
+vi backend-service.yml
+
+```
+
+```yaml
+
+apiVersion: v1
+
+kind: Service
+
+
+
+metadata:
+
+&#x20; name: backend-service
+
+&#x20; namespace: production
+
+
+
+spec:
+
+&#x20; selector:
+
+&#x20;   app: backend
+
+
+
+&#x20; ports:
+
+&#x20; - port: 80
+
+&#x20;   targetPort: 3000
+
+```
+
+Apply:
+
+```bash
+
+kubectl apply -f backend-service.yml
+
+```
+
+---
+
+# STEP 30 — CREATE REACT FRONTEND
+
+```bash
+
+npx create-react-app frontend
+
+```
+
+```bash
+
+cd frontend
+
+```
+
+---
+
+# STEP 31 — UPDATE APP.JS
+
+Replace App.js with:
+
+```javascript
+
+import React, { useEffect, useState } from 'react';
+
+import './App.css';
+
+
+
+function App() {
+
+
+
+&#x20; const \[users, setUsers] = useState(\[]);
+
+
+
+&#x20; useEffect(() => {
+
+
+
+&#x20;   fetch('/api/users')
+
+&#x20;     .then(res => res.json())
+
+&#x20;     .then(data => setUsers(data));
+
+
+
+&#x20; }, \[]);
+
+
+
+&#x20; return (
+
+&#x20;   <div className="container">
+
+&#x20;     <h1>Paytm Wallet Dashboard</h1>
+
+
+
+&#x20;     {users.map(user => (
+
+&#x20;       <div className="card" key={user.id}>
+
+&#x20;         <h2>{user.name}</h2>
+
+&#x20;         <p>{user.email}</p>
+
+&#x20;         <h3>₹ {user.wallet\_balance}</h3>
+
+&#x20;       </div>
+
+&#x20;     ))}
+
+&#x20;   </div>
+
+&#x20; );
+
+}
+
+
+
+export default App;
+
+```
+
+---
+
+# STEP 32 — UPDATE APP.CSS
+
+```css
+
+body {
+
+&#x20; margin: 0;
+
+&#x20; font-family: Arial;
+
+&#x20; background: #0f172a;
+
+&#x20; color: white;
+
+}
+
+
+
+.container {
+
+&#x20; padding: 30px;
+
+}
+
+
+
+.card {
+
+&#x20; background: #1e293b;
+
+&#x20; padding: 20px;
+
+&#x20; margin-bottom: 20px;
+
+&#x20; border-radius: 10px;
+
+}
+
+```
+
+---
+
+# STEP 33 — CREATE FRONTEND DOCKERFILE
+
+```bash
+
+vi Dockerfile
+
+```
+
+```dockerfile
+
+FROM node:18 as build
+
+
+
+WORKDIR /app
+
+
+
+COPY . .
+
+
+
+RUN npm install
+
+RUN npm run build
+
+
+
+FROM nginx
+
+
+
+COPY --from=build /app/build /usr/share/nginx/html
+
+```
+
+---
+
+# STEP 34 — BUILD FRONTEND IMAGE
+
+```bash
+
+docker build -t paytm-frontend:v1 .
+
+```
+
+---
+
+# STEP 35 — PUSH FRONTEND IMAGE
+
+```bash
+
+docker tag paytm-frontend:v1 yourdockerhub/paytm-frontend:v1
+
+```
+
+```bash
+
+docker push yourdockerhub/paytm-frontend:v1
+
+```
+
+---
+
+# STEP 36 — CREATE FRONTEND DEPLOYMENT
+
+```bash
+
+vi frontend-deployment.yml
+
+```
+
+```yaml
+
+apiVersion: apps/v1
+
+kind: Deployment
+
+
+
+metadata:
+
+&#x20; name: frontend
+
+&#x20; namespace: production
+
+
+
+spec:
+
+&#x20; replicas: 2
+
+
+
+&#x20; selector:
+
+&#x20;   matchLabels:
+
+&#x20;     app: frontend
+
+
+
+&#x20; template:
+
+&#x20;   metadata:
+
+&#x20;     labels:
+
+&#x20;       app: frontend
+
+
+
+&#x20;   spec:
+
+&#x20;     containers:
+
+&#x20;     - name: frontend
+
+
+
+&#x20;       image: yourdockerhub/paytm-frontend:v1
+
+
+
+&#x20;       ports:
+
+&#x20;       - containerPort: 80
+
+```
+
+Apply:
+
+```bash
+
+kubectl apply -f frontend-deployment.yml
+
+```
+
+---
+
+# STEP 37 — CREATE FRONTEND SERVICE
+
+```bash
+
+vi frontend-service.yml
+
+```
+
+```yaml
+
+apiVersion: v1
+
+kind: Service
+
+
+
+metadata:
+
+&#x20; name: frontend-service
+
+&#x20; namespace: production
+
+
+
+spec:
+
+&#x20; selector:
+
+&#x20;   app: frontend
+
+
+
+&#x20; ports:
+
+&#x20; - port: 80
+
+&#x20;   targetPort: 80
+
+```
+
+Apply:
+
+```bash
+
+kubectl apply -f frontend-service.yml
+
+```
+
+---
+
+# STEP 38 — INSTALL NGINX INGRESS CONTROLLER
+
+```bash
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+
+```
+
+Verify:
+
+```bash
+
+kubectl get pods -n ingress-nginx
+
+```
+
+---
+
+# STEP 39 — CREATE INGRESS
+
+```bash
+
+vi ingress.yml
+
+```
+
+```yaml
+
+apiVersion: networking.k8s.io/v1
+
+kind: Ingress
+
+
+
+metadata:
+
+&#x20; name: paytm-ingress
+
+&#x20; namespace: production
+
+
+
+spec:
+
+&#x20; ingressClassName: nginx
+
+
+
+&#x20; rules:
+
+&#x20; - http:
+
+&#x20;     paths:
+
+
+
+&#x20;     - path: /
+
+&#x20;       pathType: Prefix
+
+&#x20;       backend:
+
+&#x20;         service:
+
+&#x20;           name: frontend-service
+
+&#x20;           port:
+
+&#x20;             number: 80
+
+
+
+&#x20;     - path: /api
+
+&#x20;       pathType: Prefix
+
+&#x20;       backend:
+
+&#x20;         service:
+
+&#x20;           name: backend-service
+
+&#x20;           port:
+
+&#x20;             number: 80
+
+```
+
+Apply:
+
+```bash
+
+kubectl apply -f ingress.yml
+
+```
+
+---
+
+# STEP 40 — GET LOAD BALANCER URL
+
+```bash
+
+kubectl get svc -n ingress-nginx
+
+```
+
+Copy EXTERNAL-IP.
+
+Open in browser.
+
+---
+
+# STEP 41 — VERIFY APPLICATION
+
+Check:
+
+* Frontend loads
+* API works
+* MySQL connection works
+* User data displays
+
+---
+
+# STEP 42 — CHECK ALL RESOURCES
+
+```bash
+
+kubectl get pods -n production
+
+```
+
+```bash
+
+kubectl get svc -n production
+
+```
+
+```bash
+
+kubectl get ingress -n production
+
+```
+
+```bash
+
+kubectl get pvc -n production
+
+```
+
+```bash
+
+kubectl get statefulset -n production
+
+```
+
+---
+
+# IMPORTANT REAL TIME COMMANDS
+
+## View Logs
+
+```bash
+
+kubectl logs podname -n production
+
+```
+
+## Describe Pod
+
+```bash
+
+kubectl describe pod podname -n production
+
+```
+
+## Restart Deployment
+
+```bash
+
+kubectl rollout restart deployment frontend -n production
+
+```
+
+## Scale Deployment
+
+```bash
+
+kubectl scale deployment frontend --replicas=4 -n production
+
+```
+
+## Delete Pod
+
+```bash
+
+kubectl delete pod podname -n production
+
+```
+
+---
+
+# WHAT HAPPENS IF MYSQL POD DELETES?
+
+If MySQL pod deletes:
+
+```bash
+
+kubectl delete pod mysql-0 -n production
+
+```
+
+Kubernetes StatefulSet automatically recreates:
+
+* Same pod name
+* Same storage
+* Same data
+* Same PVC
+
+Data will not be lost.
+
+---
+
+# HOW INGRESS WORKS
+
+```text
+
+Browser
+
+&#x20;  ↓
+
+AWS Load Balancer
+
+&#x20;  ↓
+
+NGINX Ingress
+
+&#x20;  ↓
+
+Frontend Service
+
+&#x20;  ↓
+
+React Frontend Pod
+
+&#x20;  ↓
+
+Backend Service
+
+&#x20;  ↓
+
+NodeJS Backend Pod
+
+&#x20;  ↓
+
+MySQL StatefulSet
+
+&#x20;  ↓
+
+Persistent Volume
+
+&#x20;  ↓
+
+AWS EBS Volume
+
+```
+
+---
+
+# FUTURE IMPROVEMENTS
+
+This project can be upgraded with:
+
+* HTTPS SSL
+* Route53 Domain
+* Jenkins CI/CD
+* GitHub Actions
+* Helm Charts
+* Monitoring using Prometheus
+* Grafana Dashboard
+* HPA Autoscaling
+* Redis Cache
+* Payment Gateway Integration
+* Real Paytm APIs
+* JWT Authentication
+
+---
+
+# TROUBLESHOOTING SECTION
+
+## Pod CrashLoopBackOff
+
+Check logs:
+
+```bash
+
+kubectl logs podname -n production
+
+```
+
+---
+
+## ImagePullBackOff
+
+Check:
+
+* DockerHub image exists
+* Image name correct
+* DockerHub login done
+
+---
+
+## Database Connection Failed
+
+Check:
+
+```bash
+
+kubectl get configmap -n production
+
+```
+
+```bash
+
+kubectl get secret -n production
+
+```
+
+---
+
+## Ingress Not Working
+
+Check:
+
+```bash
+
+kubectl get svc -n ingress-nginx
+
+```
+
+---
+
+# FINAL RESULT
+
+At the end of project:
+
+You will have:
+
+* Real Kubernetes Cluster on AWS
+* Real ReactJS Frontend
+* Real NodeJS Backend
+* Real MySQL StatefulSet
+* Persistent Storage
+* Ingress Routing
+* Load Balancer
+* Dockerized Application
+* Full Stack Kubernetes Deployment
+
+---
+
+# PROJECT COMPLETION SUMMARY
+
+This is a complete Production Style Kubernetes Full Stack Project.
+
+Using this project you learn:
+
+* AWS EC2
+* KOPS Cluster Setup
+* Kubernetes Architecture
+* Namespace
+* ConfigMap
+* Secret
+* Deployment
+* Service
+* StatefulSet
+* Persistent Volume
+* Ingress Controller
+* Docker
+* ReactJS
+* NodeJS
+* MySQL
+* AWS Load Balancer
+* Real Time Troubleshooting
+
+---
+
+# END OF DOCUMENT
